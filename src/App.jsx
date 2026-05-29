@@ -21,36 +21,36 @@ const STYLE_COLORS = {
 
 const GROUPS = [
   { id:"building", label:"Project Building Blocks", sectionCopy:"Let's kick off with some core projects", tasks:[
-    {name:"Content Review",           desc:"Content audits, brand voice reviews etc.",                                                              primary:"Editorial",      others:["Organisational","Strategic"]},
-    {name:"Creative Concepts",        desc:"Concept ideation, territory mapping, refining ideas etc.",                                             primary:"Conceptual",     others:["Discovery","Storytelling"]},
+    {name:"Content Review",           desc:"Content audits, brand voice reviews etc.",                                                              primary:"Editorial",      others:["Strategic","Storytelling"]},
+    {name:"Creative Concepts",        desc:"Concept ideation, territory mapping, refining ideas etc.",                                             primary:"Conceptual",     others:["Storytelling","Strategic"]},
     {name:"Brand Voice Articulation", desc:"Synthesis of inputs, creative exploration, voice refinement etc.",                                     primary:"Storytelling",   others:["Conceptual","Editorial"]},
     {name:"Discovery & Research",     desc:"Deep dive into background, gathering and collating data, researching clients or sectors etc.",          primary:"Discovery",      others:["Strategic","Organisational"]},
-    {name:"Competitor Review",        desc:"Analysis of market, broad view of competitors in sector, finding useful examples etc.",                primary:"Discovery",      others:["Strategic","Conceptual"]},
+    {name:"Competitor Review",        desc:"Analysis of market, broad view of competitors in sector, finding useful examples etc.",                primary:"Discovery",      others:["Strategic","Organisational"]},
     {name:"Pack Design",              desc:"Planning and building a presentation using design principles, creating a professional standard pack.",  primary:"Design",         others:["Organisational","Storytelling"]},
-    {name:"Naming",                   desc:"Generating long list of names, writing rationales, refining through stages, top level IP search.",     primary:"Conceptual",     others:["Storytelling","Discovery"]},
+    {name:"Naming",                   desc:"Generating long list of names, writing rationales, refining through stages, top level IP search.",     primary:"Conceptual",     others:["Discovery","Storytelling"]},
     {name:"Journey Mapping",          desc:"Creating clear and useful maps of user journeys, identifying touchpoints and trigger moments.",         primary:"Discovery",      others:["Organisational","Strategic"]},
     {name:"Content Design",           desc:"Planning content as a messaging system, considering hierarchy, functionality and goals.",               primary:"Strategic",      others:["Design","Editorial"]},
-    {name:"Communications Platform",  desc:"Creating a unified messaging platform ensuring integrity across channels.",                            primary:"Strategic",      others:["Storytelling","Conceptual"]},
+    {name:"Communications Platform",  desc:"Creating a unified messaging platform ensuring integrity across channels.",                            primary:"Conceptual",     others:["Strategic","Storytelling"]},
   ]},
   { id:"writing", label:"Writing Tasks", sectionCopy:"Ok word nerds, it's writin' time", tasks:[
     {name:"Strategic Writing",    desc:"Synthesising strategic inputs into plain language, vision statements etc.",                                 primary:"Strategic",      others:["Storytelling","Conceptual"]},
     {name:"Editing & Proofing",   desc:"Careful review of drafts to correct or improve quality, ensuring the highest standards.",                  primary:"Editorial",      others:["Storytelling","Organisational"]},
     {name:"Technical Writing",    desc:"Writing requiring a high degree of precision, often for clients in highly regulated sectors.",             primary:"Editorial",      others:["Organisational","Strategic"]},
-    {name:"Copywriting",          desc:"Writing for engagement or persuasion in a brand voice, often short form headlines or ad copy.",            primary:"Storytelling",   others:["Conceptual","Editorial"]},
-    {name:"Content Writing",      desc:"Engaging longer form writing presenting a view of subject matter, often with a point of view.",            primary:"Storytelling",   others:["Editorial","Conceptual"]},
+    {name:"Copywriting",          desc:"Writing for engagement or persuasion in a brand voice, often short form headlines or ad copy.",            primary:"Conceptual",     others:["Storytelling","Editorial"]},
+    {name:"Content Writing",      desc:"Engaging longer form writing presenting a view of subject matter, often with a point of view.",            primary:"Storytelling",   others:["Discovery","Editorial"]},
     {name:"Messaging Rollout",    desc:"Populating applications with variations of approved messaging within a messaging matrix.",                 primary:"Organisational", others:["Editorial","Strategic"]},
   ]},
   { id:"workshops", label:"Workshops & Sessions", sectionCopy:"There are no wrong answers, probably.", tasks:[
-    {name:"Discovery Workshop",    desc:"Workshop held with client or focus group at project start to understand requirements and foster engagement.", primary:"Discovery",   others:["Relational","Strategic"]},
-    {name:"Training Workshop",     desc:"Training client teams in new communications content, driving uptake of an existing tool.",                primary:"Relational",     others:["Storytelling","Organisational"]},
-    {name:"Internal Presentation", desc:"Presenting to colleagues, whether project work or team focused.",                                        primary:"Relational",     others:["Strategic","Storytelling"]},
+    {name:"Discovery Workshop",    desc:"Workshop held with client or focus group at project start to understand requirements and foster engagement.", primary:"Relational",     others:["Discovery","Strategic"]},
+    {name:"Training Workshop",     desc:"Training client teams in new communications content, driving uptake of an existing tool.",                primary:"Relational",     others:["Storytelling","Design"]},
+    {name:"Internal Presentation", desc:"Presenting to colleagues, whether project work or team focused.",                                        primary:"Relational",     others:["Storytelling","Design"]},
     {name:"Client Presentation",   desc:"Presenting work to clients in person or online.",                                                        primary:"Relational",     others:["Storytelling","Strategic"]},
     {name:"Expert Facilitation",   desc:"High level presentations, panel discussions, recorded discussions etc.",                                 primary:"Relational",     others:["Conceptual","Strategic"]},
   ]},
   { id:"internal", label:"Internal Jobs", sectionCopy:"Just some last minute housekeeping", tasks:[
     {name:"Quoting",          desc:"Breaking down a project into tasks and estimating time/cost, adding narrative to ensure clarity.",             primary:"Strategic",      others:["Organisational","Storytelling"]},
     {name:"Project Planning", desc:"Mapping out sequence of tasks in a project, understanding how time should be spent.",                         primary:"Organisational", others:["Strategic","Relational"]},
-    {name:"Team Building",    desc:"Activities or contributions designed to improve team connection, collaboration and vibe.",                     primary:"Relational",     others:["Conceptual","Discovery"]},
+    {name:"Team Building",    desc:"Activities or contributions designed to improve team connection, collaboration and vibe.",                     primary:"Relational",     others:["Conceptual","Organisational"]},
     {name:"Admin",            desc:"Filing, timesheets etc.",                                                                                     primary:"Organisational", others:["Editorial","Strategic"]},
     {name:"Communication",    desc:"Responsiveness to queries, communication around availability, clarity through handovers.",                    primary:"Relational",     others:["Organisational","Strategic"]},
   ]},
@@ -60,12 +60,12 @@ const GROUPS = [
 const SCORE_MAP = {1:5, 2:3.75, 3:2.5, 4:1.25, 5:0, 0:null};
 
 // 60/25/15 weighting — primary tag carries more signal
-const W = { p: 0.60, s: 0.25, t: 0.15 };
+const W = { p: 0.55, s: 0.30, t: 0.15 };
 
 // Theoretical maximum = all tasks answered as 1 (5pts each)
 const MAX_EXPOSURE = {
-  Strategic:4.750, Relational:4.000, Storytelling:3.900, Organisational:3.750,
-  Editorial:3.000, Discovery:2.950, Conceptual:2.800, Design:0.850,
+  Strategic:4.500, Relational:4.000, Storytelling:3.950, Organisational:3.750,
+  Conceptual:3.250, Editorial:2.850, Discovery:2.550, Design:1.150,
 };
 
 function shuffle(arr){
@@ -181,7 +181,7 @@ Return ONLY valid JSON, no markdown: {"archetype": "...", "strengths": "...", "s
 // ── RADAR VIZ ──
 function RadarViz({scores,top3,archetype,name}){
   const canvasRef=useRef(null);
-  const CX=220,CY=210,MAX_R=155,MIN_R=15;
+  const CX=250,CY=210,MAX_R=148,MIN_R=15;
   const axes=[
     {name:'Discovery',      a:Math.PI*1.5},
     {name:'Strategic',      a:Math.PI*1.75},
@@ -196,7 +196,7 @@ function RadarViz({scores,top3,archetype,name}){
   useEffect(()=>{
     const cv=canvasRef.current;if(!cv) return;
     const ctx=cv.getContext('2d');
-    const W=440,H=430;
+    const W=520,H=430;
     ctx.clearRect(0,0,W,H);
 
     function sToR(s){return MIN_R+(s/100)*(MAX_R-MIN_R);}
@@ -263,8 +263,8 @@ function RadarViz({scores,top3,archetype,name}){
       ctx.strokeStyle=STYLE_COLORS[p.ax.name]||'#888';ctx.lineWidth=2;ctx.stroke();
     });
 
-    // Labels
-    const labelDist=182;
+    // Labels — nudged out to 192px from centre
+    const labelDist=192;
     axes.forEach(ax=>{
       const lx=CX+labelDist*Math.cos(ax.a);
       const ly=CY+labelDist*Math.sin(ax.a);
@@ -276,7 +276,7 @@ function RadarViz({scores,top3,archetype,name}){
 
   },[scores,top3]);
 
-  return <canvas ref={canvasRef} width={440} height={430} style={{width:'100%',maxWidth:440,display:'block',margin:'0 auto'}}/>;
+  return <canvas ref={canvasRef} width={520} height={430} style={{width:'100%',maxWidth:520,display:'block',margin:'0 auto'}}/>;
 }
 
 // ── BAR CHART ──
